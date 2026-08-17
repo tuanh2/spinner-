@@ -17,7 +17,7 @@
 
 ## ✦ Overview
 
-A minimal, high-performance loading spinner design system crafted specifically for the **GenLayer Portal** mission. Built with 100% pure SVG and CSS animations — zero dependencies, zero JavaScript runtime, zero bundle bloat.
+A minimal, high-performance loading spinner design system crafted specifically for the **GenLayer Portal** mission. Built with 100% pure SVG and CSS animations: zero dependencies, zero JavaScript runtime, zero bundle bloat.
 
 | Feature | Option 1 | Option 2 |
 |---|---|---|
@@ -32,10 +32,10 @@ A minimal, high-performance loading spinner design system crafted specifically f
 
 ## ✦ Design Motion Concepts
 
-### **Option 1 — Hexagon Neon Chase**
+### **Option 1: Hexagon Neon Chase**
 Reuses the GenLayer Portal's iconic hexagon container. Three gradient trails (`#e619c9`, `#8b5cf6`, `#22d3ee`) sweep around the mark contours while the outer hexagon pulses seamlessly. Gives high energy and futuristic web3 presence while preserving identity.
 
-### **Option 2 — Shatter & Reassemble**
+### **Option 2: Shatter & Reassemble**
 Deconstructs the GenLayer mark into its three core contours (left wing, right wing, center diamond). The elements explode outward and snap back together onto an underlying wireframe guide, simulating signal resolution and consensus.
 
 ---
