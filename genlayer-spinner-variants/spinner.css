@@ -1,0 +1,193 @@
+/* GenLayer Spinner — shared styles */
+.gl-spinner {
+  display: block;
+  width: var(--gl-size, 48px);
+  height: var(--gl-size, 48px);
+  flex: none;
+  overflow: visible;
+  --ink: var(--gl-ink, currentColor);
+  --acc: var(--gl-accent, #E66F00);
+  --gl-dur: calc(2s / var(--gl-speed, 1));
+}
+
+.gl-spinner .gl-track {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.4;
+  opacity: .16;
+}
+
+.gl-spinner .gl-edge {
+  fill: none;
+  stroke: var(--acc);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  animation: gl-circuit var(--gl-dur) linear infinite;
+}
+
+.gl-spinner .gl-wing { fill: var(--ink); }
+.gl-spinner .gl-core { fill: var(--acc); }
+
+.gl-spinner .gl-glyph {
+  animation: gl-breathe var(--gl-dur) ease-in-out infinite;
+}
+
+@keyframes gl-circuit {
+  from { stroke-dasharray: 20 80; stroke-dashoffset: 0 }
+  to   { stroke-dasharray: 20 80; stroke-dashoffset: -100 }
+}
+
+@keyframes gl-breathe {
+  0%, 100% { opacity: .45 }
+  50%      { opacity: 1 }
+}
+
+/* Variant: consensus converge */
+.gl-spinner .tri {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.gl-spinner .tri-a {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 7px solid var(--acc);
+  animation: c-a var(--gl-dur) ease-in-out infinite;
+}
+.gl-spinner .tri-b {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 7px solid var(--acc);
+  animation: c-b var(--gl-dur) ease-in-out infinite;
+}
+.gl-spinner .tri-c {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 7px solid var(--gl-accent-dark, #FF8A22);
+  animation: c-c var(--gl-dur) ease-in-out infinite;
+}
+@keyframes c-a {
+  0% { transform: translate(calc(-50% - 20px), calc(-50% - 16px)) rotate(-20deg) scale(.5); opacity: 0 }
+  15% { opacity: 1 }
+  40% { transform: translate(-50%, -50%) rotate(0) scale(1); opacity: 1 }
+  60% { transform: translate(-50%, -50%) rotate(0) scale(1); opacity: 1 }
+  100% { transform: translate(-50%, -50%) rotate(0) scale(.4); opacity: 0 }
+}
+@keyframes c-b {
+  0% { transform: translate(calc(-50% + 20px), calc(-50% - 16px)) rotate(20deg) scale(.5); opacity: 0 }
+  15% { opacity: 1 }
+  40% { transform: translate(-50%, -50%) rotate(0) scale(1); opacity: 1 }
+  60% { transform: translate(-50%, -50%) rotate(0) scale(1); opacity: 1 }
+  100% { transform: translate(-50%, -50%) rotate(0) scale(.4); opacity: 0 }
+}
+@keyframes c-c {
+  0% { transform: translate(-50%, calc(-50% + 20px)) scale(.5); opacity: 0 }
+  15% { opacity: 1 }
+  40% { transform: translate(-50%, -50%) scale(1); opacity: 1 }
+  60% { transform: translate(-50%, -50%) scale(1); opacity: 1 }
+  100% { transform: translate(-50%, -50%) scale(.4); opacity: 0 }
+}
+
+/* Variant: gavel tap */
+.gl-spinner .gl-glyph-gavel {
+  transform-origin: 50% 90%;
+  animation: gavel-strike var(--gl-dur) ease-in-out infinite;
+}
+.gl-spinner .impact {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  width: 24px;
+  height: 5px;
+  margin-left: -12px;
+  background: var(--acc);
+  border-radius: 50%;
+  filter: blur(3px);
+  opacity: 0;
+  animation: impact-flash var(--gl-dur) ease-in-out infinite;
+}
+@keyframes gavel-strike {
+  0%, 38%, 100% { transform: rotate(0) }
+  10% { transform: rotate(-16deg) }
+  20% { transform: rotate(5deg) }
+  28% { transform: rotate(-2deg) }
+}
+@keyframes impact-flash {
+  0%, 8%, 24%, 100% { opacity: 0 }
+  12% { opacity: 1 }
+  18% { opacity: .8 }
+}
+
+/* Variant: glitch decode */
+.gl-spinner svg.mark {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+.gl-spinner svg.mark.layer-ink {
+  mix-blend-mode: screen;
+  filter: hue-rotate(-30deg) saturate(3) brightness(1.2);
+  animation: glitch-cyan var(--gl-dur) steps(2) infinite;
+}
+.gl-spinner svg.mark.layer-accent {
+  mix-blend-mode: screen;
+  filter: hue-rotate(30deg) saturate(3) brightness(1.2);
+  animation: glitch-mag var(--gl-dur) steps(2) infinite;
+}
+@keyframes glitch-cyan {
+  0% { transform: translate(3px, 0); opacity: 1 }
+  5% { transform: translate(-4px, 0) }
+  10% { transform: translate(2px, 0) }
+  15% { transform: translate(-3px, 0) }
+  20% { transform: translate(4px, 0) }
+  25% { transform: translate(-2px, 0) }
+  30% { transform: translate(3px, 0) }
+  35% { transform: translate(-4px, 0) }
+  40%, 100% { transform: translate(0, 0) }
+}
+@keyframes glitch-mag {
+  0% { transform: translate(-3px, 0); opacity: 1 }
+  5% { transform: translate(4px, 0) }
+  10% { transform: translate(-2px, 0) }
+  15% { transform: translate(3px, 0) }
+  20% { transform: translate(-4px, 0) }
+  25% { transform: translate(2px, 0) }
+  30% { transform: translate(-3px, 0) }
+  35% { transform: translate(4px, 0) }
+  40%, 100% { transform: translate(0, 0) }
+}
+
+/* Variant: magnetic snap */
+.gl-spinner svg.half-left {
+  clip-path: polygon(0 0, 45% 0, 45% 100%, 0 100%);
+  animation: snap-left var(--gl-dur) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+.gl-spinner svg.half-right {
+  clip-path: polygon(55% 0, 100% 0, 100% 100%, 55% 100%);
+  animation: snap-right var(--gl-dur) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+@keyframes snap-left {
+  0%, 100% { transform: translateX(-9px) }
+  45%, 55% { transform: translateX(0) }
+}
+@keyframes snap-right {
+  0%, 100% { transform: translateX(9px) }
+  45%, 55% { transform: translateX(0) }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .gl-spinner .gl-edge { stroke-dasharray: 24 76 !important; stroke-dashoffset: 0 !important }
+  .gl-spinner .gl-glyph,
+  .gl-spinner .gl-glyph-gavel { animation: none !important; opacity: 1 !important }
+  .gl-spinner .tri { animation: none !important; opacity: .3 !important }
+  .gl-spinner .impact { animation: none !important; opacity: .2 !important }
+  .gl-spinner svg.mark { animation: none !important; transform: none !important }
+  .gl-spinner svg.mark.layer-ink,
+  .gl-spinner svg.mark.layer-accent { opacity: .5 !important }
+  .gl-spinner svg.half-left,
+  .gl-spinner svg.half-right { animation: none !important; transform: none !important }
+}

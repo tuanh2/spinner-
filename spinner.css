@@ -1,0 +1,114 @@
+/* GenLayer Spinner
+ * Two spinner variants: Option 1 and Option 2.
+ *
+ * Theming:  set --gl-ink, --gl-accent on any ancestor.
+ * Size:     set --gl-size, or width/height on .gl-spinner.
+ * Speed:    set --gl-speed (2 = twice as fast).
+ */
+
+/* ── Shared ─────────────────────────────────────────── */
+
+.gl-spinner{
+  position:relative;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:var(--gl-size,48px);
+  height:var(--gl-size,48px);
+  flex:none;
+  overflow:visible;
+}
+
+/* ── Option 1 ───────────────────────────────────────── */
+
+.gl-spinner--o1{ background:transparent }
+
+.gl-spinner--o1 .gl-hex{
+  position:absolute;
+  width:200%;
+  height:200%;
+  left:-50%;
+  top:-50%;
+}
+.gl-spinner--o1 .gl-hex path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* dark ground */
+.gl-spinner--o1[data-theme="dark"] .gl-track{stroke:rgba(255,255,255,.12)}
+.gl-spinner--o1[data-theme="dark"] .gl-edge{stroke:rgba(255,255,255,.9);filter:drop-shadow(0 0 2px rgba(255,255,255,.5));stroke-dasharray:17 83;animation:gl-chase var(--gl-dur,4s) linear infinite}
+.gl-spinner--o1[data-theme="dark"] .gl-mark path{fill:url(#go1);stroke:none}
+.gl-spinner--o1[data-theme="dark"] .gl-neon path{stroke:var(--gl-magenta,#e619c9);fill:none;filter:drop-shadow(0 0 1px var(--gl-magenta,#e619c9)) drop-shadow(0 0 3px var(--gl-magenta,#e619c9));animation:gl-pulse var(--gl-pulse-dur,3s) ease-in-out infinite}
+.gl-spinner--o1[data-theme="dark"] .gl-trail--1 path{stroke:var(--gl-magenta,#e619c9);fill:none;stroke-dasharray:15 225;animation:gl-chase-mark var(--gl-chase-dur,2.5s) linear infinite;filter:drop-shadow(0 0 1px var(--gl-magenta,#e619c9)) drop-shadow(0 0 3px var(--gl-magenta,#e619c9))}
+.gl-spinner--o1[data-theme="dark"] .gl-trail--2 path{stroke:var(--gl-purple,#8b5cf6);fill:none;stroke-dasharray:10 230;animation:gl-chase-mark var(--gl-chase-dur,2.5s) linear infinite .2s;opacity:.6;filter:drop-shadow(0 0 1px var(--gl-purple,#8b5cf6))}
+.gl-spinner--o1[data-theme="dark"] .gl-trail--3 path{stroke:var(--gl-cyan,#22d3ee);fill:none;stroke-dasharray:6 234;animation:gl-chase-mark var(--gl-chase-dur,2.5s) linear infinite .4s;opacity:.3;filter:drop-shadow(0 0 1px var(--gl-cyan,#22d3ee))}
+
+/* light ground */
+.gl-spinner--o1[data-theme="light"] .gl-track{stroke:rgba(0,0,0,.08)}
+.gl-spinner--o1[data-theme="light"] .gl-edge{stroke:rgba(0,0,0,.7);filter:drop-shadow(0 0 2px rgba(0,0,0,.3));stroke-dasharray:17 83;animation:gl-chase var(--gl-dur,4s) linear infinite}
+.gl-spinner--o1[data-theme="light"] .gl-mark path{fill:url(#go1);stroke:none}
+.gl-spinner--o1[data-theme="light"] .gl-neon path{stroke:var(--gl-magenta,#e619c9);fill:none;filter:drop-shadow(0 0 1px var(--gl-magenta,#e619c9)) drop-shadow(0 0 4px var(--gl-magenta,#e619c9));animation:gl-pulse var(--gl-pulse-dur,3s) ease-in-out infinite}
+.gl-spinner--o1[data-theme="light"] .gl-trail--1 path{stroke:var(--gl-magenta,#e619c9);fill:none;stroke-dasharray:15 225;animation:gl-chase-mark var(--gl-chase-dur,2.5s) linear infinite;filter:drop-shadow(0 0 1px var(--gl-magenta,#e619c9)) drop-shadow(0 0 3px var(--gl-magenta,#e619c9))}
+.gl-spinner--o1[data-theme="light"] .gl-trail--2 path{stroke:var(--gl-purple,#8b5cf6);fill:none;stroke-dasharray:10 230;animation:gl-chase-mark var(--gl-chase-dur,2.5s) linear infinite .2s;opacity:.6;filter:drop-shadow(0 0 1px var(--gl-purple,#8b5cf6))}
+.gl-spinner--o1[data-theme="light"] .gl-trail--3 path{stroke:var(--gl-cyan,#22d3ee);fill:none;stroke-dasharray:6 234;animation:gl-chase-mark var(--gl-chase-dur,2.5s) linear infinite .4s;opacity:.3}
+
+/* ── Option 2 ───────────────────────────────────────── */
+
+.gl-spinner--o2 svg{position:absolute;width:100%;height:100%}
+
+/* dark ground */
+.gl-spinner--o2[data-theme="dark"] .gl-wire path{fill:none;stroke:rgba(255,255,255,.1);stroke-width:1.5;stroke-linejoin:round}
+.gl-spinner--o2[data-theme="dark"] .gl-l path{fill:none;stroke:var(--gl-magenta,#df16ff);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:60 200;animation:gl-shatter-l var(--gl-dur,2s) ease-in-out infinite}
+.gl-spinner--o2[data-theme="dark"] .gl-r path{fill:none;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:60 200;animation:gl-shatter-r var(--gl-dur,2s) ease-in-out infinite}
+.gl-spinner--o2[data-theme="dark"] .gl-c path{fill:none;stroke:#9c13bf;stroke-width:2;stroke-linecap:round;stroke-dasharray:30 230;animation:gl-shatter-c var(--gl-dur,2s) ease-in-out infinite}
+
+/* light ground */
+.gl-spinner--o2[data-theme="light"] .gl-wire path{fill:none;stroke:rgba(0,0,0,.1);stroke-width:1.5;stroke-linejoin:round}
+.gl-spinner--o2[data-theme="light"] .gl-l path{fill:none;stroke:var(--gl-magenta,#df16ff);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:60 200;animation:gl-shatter-l var(--gl-dur,2s) ease-in-out infinite}
+.gl-spinner--o2[data-theme="light"] .gl-r path{fill:none;stroke:#000;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:60 200;animation:gl-shatter-r var(--gl-dur,2s) ease-in-out infinite}
+.gl-spinner--o2[data-theme="light"] .gl-c path{fill:none;stroke:#9c13bf;stroke-width:2;stroke-linecap:round;stroke-dasharray:30 230;animation:gl-shatter-c var(--gl-dur,2s) ease-in-out infinite}
+
+/* ── Keyframes ──────────────────────────────────────── */
+
+@keyframes gl-chase{
+  0%{stroke-dashoffset:100}
+  100%{stroke-dashoffset:-100}
+}
+@keyframes gl-chase-mark{
+  0%{stroke-dashoffset:250}
+  100%{stroke-dashoffset:-250}
+}
+@keyframes gl-pulse{
+  0%,100%{opacity:.15}
+  50%{opacity:.7}
+}
+@keyframes gl-shatter-l{
+  0%{transform:translate(0,0);opacity:1;stroke-dashoffset:260}
+  30%{stroke-dashoffset:0;opacity:1}
+  50%{transform:translate(-3px,-2px);opacity:.8}
+  70%{transform:translate(-1px,1px);opacity:1}
+  100%{transform:translate(0,0);stroke-dashoffset:-260;opacity:1}
+}
+@keyframes gl-shatter-r{
+  0%{transform:translate(0,0);opacity:1;stroke-dashoffset:-260}
+  30%{stroke-dashoffset:0;opacity:1}
+  50%{transform:translate(3px,2px);opacity:.8}
+  70%{transform:translate(1px,-1px);opacity:1}
+  100%{transform:translate(0,0);stroke-dashoffset:260;opacity:1}
+}
+@keyframes gl-shatter-c{
+  0%,20%{transform:translate(0,0);opacity:0;stroke-dashoffset:260}
+  30%{opacity:1}
+  40%{stroke-dashoffset:0;opacity:1}
+  50%{transform:translate(0,0);opacity:1}
+  60%{transform:translate(2px,-2px);opacity:.7}
+  80%{transform:translate(-1px,1px);opacity:1}
+  90%{opacity:1}
+  100%{transform:translate(0,0);stroke-dashoffset:-260;opacity:0}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .gl-spinner *{animation:none !important}
+  .gl-spinner--o1 .gl-edge{stroke-dasharray:17 83 !important;stroke-dashoffset:0 !important}
+  .gl-spinner--o1 .gl-neon path{opacity:1 !important}
+  .gl-spinner--o1 .gl-trail path{opacity:1 !important}
+  .gl-spinner--o2 .gl-l path,.gl-spinner--o2 .gl-r path,.gl-spinner--o2 .gl-c path{opacity:1 !important;stroke-dashoffset:0 !important}
+}
