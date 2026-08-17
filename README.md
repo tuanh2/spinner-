@@ -9,7 +9,7 @@
 [![Size: <2KB](https://img.shields.io/badge/Size-%3C2KB-22d3ee.svg)](#tech-specs)
 [![Accessibility: A11y](https://img.shields.io/badge/A11y-Reduced--Motion-100%25-green.svg)](#accessibility)
 
-[**🔥 Live Vercel Demo**](https://genlayer-spinner-one.vercel.app) • [**⚡ GitHub Pages Demo**](https://tuanh2.github.io/spinner-/) • [**Option 1 Snippet**](#option-1) • [**Option 2 Snippet**](#option-2)
+[**🔥 Live Demo**](https://genlayer-spinner-one.vercel.app) • [**Option 1 Snippet**](#option-1) • [**Option 2 Snippet**](#option-2)
 
 </div>
 
@@ -105,4 +105,4 @@ Control sizing, speed, and brand colors directly via CSS Custom Properties on an
 - **License**: MIT © [tuanh2](https://github.com/tuanh2).
 - **Brand Geometry**: Symbol & Hexagon shapes © GenLayer Foundation.
 - **Repository**: [github.com/tuanh2/spinner-](https://github.com/tuanh2/spinner-)
-- **Live Showcase**: [tuanh2.github.io/spinner-/](https://tuanh2.github.io/spinner-/)
+- **Live Demo**: [genlayer-spinner-one.vercel.app](https://genlayer-spinner-one.vercel.app)
