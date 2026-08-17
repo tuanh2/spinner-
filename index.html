@@ -3,552 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GenLayer Spinner — Option 1 &amp; Option 2</title>
-<link rel="stylesheet" href="spinner.css">
+<title>GenLayer Spinner Options</title>
 <style>
-/* ── Design System & Tokens ───────────────────────── */
-:root {
-  --bg: #09090b;
-  --surface: #121215;
-  --surface-border: #222228;
-  --fg: #f4f4f5;
-  --muted: #71717a;
-  --accent: #e619c9;
-  --accent-purple: #8b5cf6;
-  --accent-cyan: #22d3ee;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-[data-page="light"] {
-  --bg: #fafafa;
-  --surface: #ffffff;
-  --surface-border: #e4e4e7;
-  --fg: #09090b;
-  --muted: #a1a1aa;
-}
-
 *{margin:0;padding:0;box-sizing:border-box}
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-sans);
-  line-height: 1.6;
-  transition: background 0.25s ease, color 0.25s ease;
-  -webkit-font-smoothing: antialiased;
-}
-
-.container {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 0 24px 80px;
-}
-
-/* ── Header / Masthead ────────────────────────────── */
-header {
-  padding: 72px 0 48px;
-  text-align: center;
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(230, 25, 201, 0.1);
-  border: 1px solid rgba(230, 25, 201, 0.25);
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 99px;
-  margin-bottom: 20px;
-}
-h1 {
-  font-size: clamp(32px, 5vw, 48px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-h1 span {
-  background: linear-gradient(135deg, var(--accent), var(--accent-purple), var(--accent-cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.sub {
-  color: var(--muted);
-  font-size: 15px;
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-/* ── Control Bar ───────────────────────────────────── */
-.controls-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  background: var(--surface);
-  border: 1px solid var(--surface-border);
-  padding: 12px 24px;
-  border-radius: 99px;
-  margin: 36px auto 56px;
-  width: fit-content;
-  flex-wrap: wrap;
-}
-.ctrl-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  font-family: var(--font-mono);
-  color: var(--muted);
-}
-.ctrl-group input[type="range"] {
-  width: 100px;
-  accent-color: var(--accent);
-}
-.ctrl-val {
-  min-width: 32px;
-  color: var(--fg);
-}
-.btn {
-  background: var(--bg);
-  border: 1px solid var(--surface-border);
-  color: var(--fg);
-  padding: 6px 14px;
-  border-radius: 99px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* ── Showcase Grid ─────────────────────────────────── */
-.options-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  margin-bottom: 56px;
-}
-@media (max-width: 680px) {
-  .options-grid { grid-template-columns: 1fr; }
-}
-
-.opt-card {
-  background: var(--surface);
-  border: 1px solid var(--surface-border);
-  border-radius: 16px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.opt-card-header {
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--surface-border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.opt-card-title {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-.opt-tag {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--accent);
-  background: rgba(230, 25, 201, 0.1);
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-.opt-card-body {
-  padding: 28px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-.opt-desc {
-  font-size: 13px;
-  color: var(--muted);
-  text-align: center;
-  min-height: 40px;
-}
-.opt-tiles-row {
-  display: flex;
-  gap: 16px;
-}
-.tile-wrapper {
-  position: relative;
-}
-.opt-tile {
-  width: 140px;
-  height: 140px;
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--surface-border);
-}
-.opt-tile.dark { background: #09090b; }
-.opt-tile.light { background: #ffffff; }
-.tile-label {
-  position: absolute;
-  bottom: 6px;
-  right: 8px;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  opacity: 0.5;
-}
-
-/* ── Sections ──────────────────────────────────────── */
-section {
-  margin-bottom: 56px;
-}
-.section-head {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--surface-border);
-}
-
-.ladder-card {
-  background: var(--surface);
-  border: 1px solid var(--surface-border);
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 16px;
-}
-.ladder-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  margin-bottom: 16px;
-}
-.ladder-items {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.ladder-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.ladder-px {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-}
-
-/* ── Spec Grid ─────────────────────────────────────── */
-.spec-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 12px;
-}
-.spec-box {
-  background: var(--surface);
-  border: 1px solid var(--surface-border);
-  border-radius: 12px;
-  padding: 14px 16px;
-}
-.spec-box dt {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-.spec-box dd {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--fg);
-}
-
-/* ── Usage Code Blocks ─────────────────────────────── */
-.code-block {
-  background: var(--surface);
-  border: 1px solid var(--surface-border);
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 16px;
-}
-.code-block h3 {
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.code-block p {
-  font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 12px;
-}
-pre {
-  background: var(--bg);
-  border: 1px solid var(--surface-border);
-  border-radius: 8px;
-  padding: 14px 16px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  overflow-x: auto;
-  color: var(--fg);
-  line-height: 1.5;
-}
-
-/* ── Footer ────────────────────────────────────────── */
-footer {
-  text-align: center;
-  padding-top: 40px;
-  border-top: 1px solid var(--surface-border);
-  font-size: 12px;
-  color: var(--muted);
-}
-footer a {
-  color: var(--accent);
-  text-decoration: none;
-}
-footer a:hover {
-  text-decoration: underline;
-}
+body{background:#111;color:#fff;font-family:-apple-system,system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+h1{font-size:28px;font-weight:700;margin-bottom:8px;text-align:center}
+h1 span{color:#df16ff}
+p.sub{color:#666;font-size:13px;margin-bottom:40px;text-align:center}
+.row{display:flex;gap:40px;margin-bottom:40px;flex-wrap:wrap;justify-content:center}
+.opt{display:flex;flex-direction:column;gap:0;border-radius:16px;overflow:hidden;border:1px solid #222}
+.opt-label{background:#1a1a1a;padding:12px 24px;text-align:center;font-size:13px;font-weight:600;letter-spacing:.05em;color:#999;border-bottom:1px solid #222}
+.tile{width:240px;height:240px;display:flex;justify-content:center;align-items:center;position:relative}
+.tile.dark{background:#0a0a0a}
+.tile.white{background:#ffffff}
+.tile-label{position:absolute;bottom:8px;right:10px;font-size:9px;font-family:monospace;letter-spacing:.05em}
+.tile.dark .tile-label{color:#333}
+.tile.white .tile-label{color:#ddd}
+.s{width:80px;height:80px;position:relative}
+.s svg{width:100%;height:100%;position:absolute;top:0;left:0}
+.s .wire path{fill:none;stroke-width:1.5;stroke-linejoin:round}
+.dark .s .wire path{stroke:#1a1a1a}
+.white .s .wire path{stroke:#e0e0e0}
+.s .neon path{fill:none;stroke:#df16ff;stroke-width:2;stroke-linecap:round;animation:np 3s ease-in-out infinite}
+.dark .s .neon path{filter:drop-shadow(0 0 1px #df16ff) drop-shadow(0 0 3px #df16ff)}
+.white .s .neon path{filter:drop-shadow(0 0 1px #df16ff) drop-shadow(0 0 4px #df16ff)}
+.s .t1 path{fill:none;stroke-width:2;stroke-linecap:round;stroke-dasharray:12 248;animation:ch 2.5s linear infinite}
+.dark .s .t1 path{stroke:#fff;filter:drop-shadow(0 0 1px #df16ff) drop-shadow(0 0 3px #df16ff)}
+.white .s .t1 path{stroke:#9c13bf;filter:drop-shadow(0 0 1px #df16ff) drop-shadow(0 0 3px #df16ff)}
+.s .t2 path{fill:none;stroke:#df16ff;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:8 252;animation:ch 2.5s linear infinite .2s;opacity:.6}
+.dark .s .t2 path{filter:drop-shadow(0 0 1px #df16ff)}
+.white .s .t2 path{filter:drop-shadow(0 0 1px #df16ff)}
+.s .t3 path{fill:none;stroke:#9c13bf;stroke-width:1;stroke-linecap:round;stroke-dasharray:5 255;animation:ch 2.5s linear infinite .4s;opacity:.3}
+.white .s .t3 path{stroke:#df16ff;opacity:.25}
+.dark .s .neon path{animation-name:npd}
+@keyframes np{0%,100%{opacity:.2}50%{opacity:.8}}
+@keyframes npd{0%,100%{opacity:.2;filter:drop-shadow(0 0 1px #df16ff)}50%{opacity:.8;filter:drop-shadow(0 0 2px #df16ff) drop-shadow(0 0 6px #df16ff)}}
+@keyframes ch{0%{stroke-dashoffset:270}100%{stroke-dashoffset:-270}}
+.s .l path{fill:none;stroke:#df16ff;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:60 200;animation:s1 2s ease-in-out infinite}
+.dark .s .l path{}
+.white .s .l path{stroke:#df16ff}
+.s .r path{fill:none;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:60 200;animation:s2 2s ease-in-out infinite}
+.dark .s .r path{stroke:#fff}
+.white .s .r path{stroke:#000}
+.s .c path{fill:none;stroke:#9c13bf;stroke-width:2;stroke-linecap:round;stroke-dasharray:30 230;animation:s3 2s ease-in-out infinite}
+.dark .s .c path{}
+.white .s .c path{stroke:#9c13bf}
+@keyframes s1{0%{transform:translate(0,0);opacity:1;stroke-dashoffset:260}30%{stroke-dashoffset:0;opacity:1}50%{transform:translate(-3px,-2px);opacity:.8}70%{transform:translate(-1px,1px);opacity:1}100%{transform:translate(0,0);stroke-dashoffset:-260;opacity:1}}
+@keyframes s2{0%{transform:translate(0,0);opacity:1;stroke-dashoffset:-260}30%{stroke-dashoffset:0;opacity:1}50%{transform:translate(3px,2px);opacity:.8}70%{transform:translate(1px,-1px);opacity:1}100%{transform:translate(0,0);stroke-dashoffset:260;opacity:1}}
+@keyframes s3{0%,20%{transform:translate(0,0);opacity:0;stroke-dashoffset:260}30%{opacity:1}40%{stroke-dashoffset:0;opacity:1}50%{transform:translate(0,0);opacity:1}60%{transform:translate(2px,-2px);opacity:.7}80%{transform:translate(-1px,1px);opacity:1}90%{opacity:1}100%{transform:translate(0,0);stroke-dashoffset:-260;opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:0s!important;transition:none!important}}
+.s .hex{width:200%;height:200%;left:-50%;top:-50%}
+.s .hex path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.dark .s .hex path{stroke:rgba(255,255,255,.12)}
+.white .s .hex path{stroke:rgba(0,0,0,.08)}
+.s .hex .gl-edge{stroke-dasharray:17 83;animation:hex-chase 4s linear infinite}
+.dark .s .hex .gl-edge{stroke:rgba(255,255,255,.9);filter:drop-shadow(0 0 2px rgba(255,255,255,.5))}
+.white .s .hex .gl-edge{stroke:rgba(0,0,0,.7);filter:drop-shadow(0 0 2px rgba(0,0,0,.3))}
+@keyframes hex-chase{0%{stroke-dashoffset:100}100%{stroke-dashoffset:-100}}
+.opt:first-child .s{width:56px;height:56px}
+.opt:last-child .s{width:140px;height:140px}
+.opt:first-child .dark .s .wire path{stroke:none;fill:url(#go1d)}
+.opt:first-child .dark .s .neon path{stroke:#e619c9;fill:none;filter:drop-shadow(0 0 1px #e619c9) drop-shadow(0 0 3px #e619c9);animation:np2 3s ease-in-out infinite}
+.opt:first-child .dark .s .t1 path{stroke:#e619c9;fill:none;stroke-dasharray:15 225;animation:ch2 2.5s linear infinite;filter:drop-shadow(0 0 1px #e619c9) drop-shadow(0 0 3px #e619c9)}
+.opt:first-child .dark .s .t2 path{stroke:#8b5cf6;fill:none;stroke-dasharray:10 230;animation:ch2 2.5s linear infinite .2s;opacity:.6;filter:drop-shadow(0 0 1px #8b5cf6)}
+.opt:first-child .dark .s .t3 path{stroke:#22d3ee;fill:none;stroke-dasharray:6 234;animation:ch2 2.5s linear infinite .4s;opacity:.3;filter:drop-shadow(0 0 1px #22d3ee)}
+.opt:first-child .white .s .wire path{stroke:none;fill:url(#go1w)}
+.opt:first-child .white .s .neon path{stroke:#e619c9;fill:none;filter:drop-shadow(0 0 1px #e619c9) drop-shadow(0 0 4px #e619c9);animation:np2 3s ease-in-out infinite}
+.opt:first-child .white .s .t1 path{stroke:#e619c9;fill:none;stroke-dasharray:15 225;animation:ch2 2.5s linear infinite;filter:drop-shadow(0 0 1px #e619c9) drop-shadow(0 0 3px #e619c9)}
+.opt:first-child .white .s .t2 path{stroke:#8b5cf6;fill:none;stroke-dasharray:10 230;animation:ch2 2.5s linear infinite .2s;opacity:.6;filter:drop-shadow(0 0 1px #8b5cf6)}
+.opt:first-child .white .s .t3 path{stroke:#22d3ee;fill:none;stroke-dasharray:6 234;animation:ch2 2.5s linear infinite .4s;opacity:.3}
+@keyframes ch2{0%{stroke-dashoffset:250}100%{stroke-dashoffset:-250}}
+@keyframes np2{0%,100%{opacity:.15}50%{opacity:.7}}
 </style>
 </head>
-<body data-page="dark">
-
-<div class="container">
-
-<!-- Header -->
-<header>
-  <div class="badge">GenLayer Portal • Pure SVG + CSS</div>
-  <h1>GenLayer <span>Spinner</span></h1>
-  <p class="sub">High-performance loading spinner concepts for the GenLayer Portal. Zero dependencies, zero JavaScript runtime.</p>
-</header>
-
-<!-- Controls -->
-<div class="controls-bar">
-  <div class="ctrl-group">
-    <span>SPEED</span>
-    <input type="range" id="speed" min="0.2" max="3" step="0.1" value="1">
-    <span class="ctrl-val" id="speedVal">1.0x</span>
-  </div>
-  <button class="btn" id="pauseBtn">Pause</button>
-  <button class="btn" id="themeBtn">Toggle Theme</button>
+<body>
+<h1>GenLayer Spinner <span>Options</span></h1>
+<p class="sub">Final 2 candidates - pure CSS, zero JS</p>
+<div class="row">
+<div class="opt">
+<div class="opt-label">Option 1</div>
+<div class="tile dark">
+<div class="s">
+<svg class="hex" viewBox="0 0 48 48"><path d="M21.75 1.29904C23.1423 0.49519 24.8577 0.49519 26.25 1.29904L42.5346 10.701C43.9269 11.5048 44.7846 12.9904 44.7846 14.5981V33.4019C44.7846 35.0096 43.9269 36.4952 42.5346 37.299L26.25 46.701C24.8577 47.5048 23.1423 47.5048 21.75 46.701L5.46539 37.299C4.07309 36.4952 3.21539 35.0096 3.21539 33.4019V14.5981C3.21539 12.9904 4.07309 11.5048 5.46539 10.701L21.75 1.29904Z"/><path class="gl-edge" d="M21.75 1.29904C23.1423 0.49519 24.8577 0.49519 26.25 1.29904L42.5346 10.701C43.9269 11.5048 44.7846 12.9904 44.7846 14.5981V33.4019C44.7846 35.0096 43.9269 36.4952 42.5346 37.299L26.25 46.701C24.8577 47.5048 23.1423 47.5048 21.75 46.701L5.46539 37.299C4.07309 36.4952 3.21539 35.0096 3.21539 33.4019V14.5981C3.21539 12.9904 4.07309 11.5048 5.46539 10.701L21.75 1.29904Z" pathLength="100"/></svg>
+<svg class="wire" viewBox="0 0 97.76 91.93"><defs><linearGradient id="go1d" x1="0" y1="0" x2="97.76" y2="91.93" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#e619c9"/><stop offset="50%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
+<svg class="neon" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
+<svg class="t1" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
+<svg class="t2" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
+<svg class="t3" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
 </div>
-
-<!-- Option Showcase -->
-<div class="options-grid">
-  <!-- Option 1 -->
-  <div class="opt-card">
-    <div class="opt-card-header">
-      <div class="opt-card-title">Option 1</div>
-      <div class="opt-tag">Hexagon Pulse</div>
-    </div>
-    <div class="opt-card-body">
-      <p class="opt-desc">Three gradient trails sweep around the GenLayer mark while the outer hexagon pulses seamlessly.</p>
-      <div class="opt-tiles-row">
-        <div class="tile-wrapper">
-          <div class="opt-tile dark" id="o1-dark"></div>
-          <span class="tile-label" style="color:#666">DARK</span>
-        </div>
-        <div class="tile-wrapper">
-          <div class="opt-tile light" id="o1-light"></div>
-          <span class="tile-label" style="color:#999">LIGHT</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Option 2 -->
-  <div class="opt-card">
-    <div class="opt-card-header">
-      <div class="opt-card-title">Option 2</div>
-      <div class="opt-tag">Shatter &amp; Assemble</div>
-    </div>
-    <div class="opt-card-body">
-      <p class="opt-desc">Left wing, right wing and core diamond fly apart then reassemble onto a stroked wireframe silhouette.</p>
-      <div class="opt-tiles-row">
-        <div class="tile-wrapper">
-          <div class="opt-tile dark" id="o2-dark"></div>
-          <span class="tile-label" style="color:#666">DARK</span>
-        </div>
-        <div class="tile-wrapper">
-          <div class="opt-tile light" id="o2-light"></div>
-          <span class="tile-label" style="color:#999">LIGHT</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<span class="tile-label">DARK</span>
 </div>
-
-<!-- Size Ladder -->
-<section>
-  <div class="section-head">Size Ladder Preview</div>
-  <div class="ladder-card">
-    <div class="ladder-label">Option 1 — 72px / 48px / 32px / 24px / 16px</div>
-    <div class="ladder-items" id="ladder-o1"></div>
-  </div>
-  <div class="ladder-card">
-    <div class="ladder-label">Option 2 — 72px / 48px / 32px / 24px / 16px</div>
-    <div class="ladder-items" id="ladder-o2"></div>
-  </div>
-</section>
-
-<!-- Specifications -->
-<section>
-  <div class="section-head">Technical Specification</div>
-  <dl class="spec-grid">
-    <div class="spec-box"><dt>Technique</dt><dd>SVG + CSS</dd></div>
-    <div class="spec-box"><dt>Dependencies</dt><dd>0 (Zero JS)</dd></div>
-    <div class="spec-box"><dt>Option 1 Loop</dt><dd>4.0s / 2.5s</dd></div>
-    <div class="spec-box"><dt>Option 2 Loop</dt><dd>2.0s Ease</dd></div>
-    <div class="spec-box"><dt>Accessibility</dt><dd>a11y + Reduced Motion</dd></div>
-    <div class="spec-box"><dt>File Size</dt><dd>&lt; 2KB</dd></div>
-  </dl>
-</section>
-
-<!-- Usage Guide -->
-<section>
-  <div class="section-head">Quick Start</div>
-  <div class="code-block">
-    <h3>1. Include Styles</h3>
-    <p>Include <code>spinner.css</code> in your page head:</p>
-    <pre><code>&lt;link rel="stylesheet" href="spinner.css"&gt;</code></pre>
-  </div>
-  <div class="code-block">
-    <h3>2. Embed SVG Snippet</h3>
-    <p>Copy <code>snippet-o1.html</code> or <code>snippet-o2.html</code> into your HTML markup:</p>
-    <pre><code>&lt;!-- Option 1 --&gt;
-&lt;div class="gl-spinner gl-spinner--o1" data-theme="dark" style="--gl-size:48px"&gt;&lt;/div&gt;
-
-&lt;!-- Option 2 --&gt;
-&lt;div class="gl-spinner gl-spinner--o2" data-theme="dark" style="--gl-size:48px" role="status" aria-label="Loading"&gt;&lt;/div&gt;</code></pre>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
-  <p>GenLayer Symbol &amp; Geometry &copy; GenLayer Foundation. Designed &amp; Crafted by <a href="https://github.com/tuanh2">tuanh2</a>.</p>
-  <p style="margin-top:4px">MIT Licensed • Repository: <a href="https://github.com/tuanh2/spinner-">github.com/tuanh2/spinner-</a></p>
-</footer>
-
-</div><!-- .container -->
-
-<script>
-(function(){
-  /* ── Speed Control ─────────────────────────────── */
-  const range = document.getElementById('speed');
-  const val = document.getElementById('speedVal');
-  function applySpeed(s){
-    val.innerHTML = s.toFixed(1) + 'x';
-    const css = document.documentElement.style;
-    css.setProperty('--gl-chase-dur', (2.5/s) + 's');
-    css.setProperty('--gl-pulse-dur', (3/s) + 's');
-    css.setProperty('--gl-dur', (2/s) + 's');
-    document.querySelectorAll('.gl-hex .gl-edge').forEach(e => e.style.animationDuration = (4/s) + 's');
-    document.querySelectorAll('.gl-spinner--o1 .gl-trail path').forEach(e => e.style.animationDuration = (2.5/s) + 's');
-    document.querySelectorAll('.gl-spinner--o1 .gl-neon path').forEach(e => e.style.animationDuration = (3/s) + 's');
-    document.querySelectorAll('.gl-spinner--o2 .gl-l path, .gl-spinner--o2 .gl-r path, .gl-spinner--o2 .gl-c path').forEach(e => e.style.animationDuration = (2/s) + 's');
-  }
-  range.addEventListener('input', () => applySpeed(+range.value));
-
-  /* ── Pause Control ─────────────────────────────── */
-  const pauseBtn = document.getElementById('pauseBtn');
-  let paused = false;
-  pauseBtn.addEventListener('click', () => {
-    paused = !paused;
-    document.querySelectorAll('.gl-spinner *').forEach(e => e.style.animationPlayState = paused ? 'paused' : 'running');
-    pauseBtn.textContent = paused ? 'Play' : 'Pause';
-  });
-
-  /* ── Theme Switcher ────────────────────────────── */
-  const themeBtn = document.getElementById('themeBtn');
-  themeBtn.addEventListener('click', () => {
-    const b = document.body;
-    b.dataset.page = b.dataset.page === 'dark' ? 'light' : 'dark';
-  });
-
-  /* ── Render Spinners ────────────────────────────── */
-  const o1Snippet = `
-    <svg class="gl-hex" viewBox="0 0 48 48"><path class="gl-track" d="M21.75 1.29904C23.1423 0.49519 24.8577 0.49519 26.25 1.29904L42.5346 10.701C43.9269 11.5048 44.7846 12.9904 44.7846 14.5981V33.4019C44.7846 35.0096 43.9269 36.4952 42.5346 37.299L26.25 46.701C24.8577 47.5048 23.1423 47.5048 21.75 46.701L5.46539 37.299C4.07309 36.4952 3.21539 35.0096 3.21539 33.4019V14.5981C3.21539 12.9904 4.07309 11.5048 5.46539 10.701L21.75 1.29904Z"/><path class="gl-edge" d="M21.75 1.29904C23.1423 0.49519 24.8577 0.49519 26.25 1.29904L42.5346 10.701C43.9269 11.5048 44.7846 12.9904 44.7846 14.5981V33.4019C44.7846 35.0096 43.9269 36.4952 42.5346 37.299L26.25 46.701C24.8577 47.5048 23.1423 47.5048 21.75 46.701L5.46539 37.299C4.07309 36.4952 3.21539 35.0096 3.21539 33.4019V14.5981C3.21539 12.9904 4.07309 11.5048 5.46539 10.701L21.75 1.29904Z" pathLength="100"/></svg>
-    <svg class="gl-mark" viewBox="0 0 97.76 91.93"><defs><linearGradient id="go1g" x1="0" y1="0" x2="97.76" y2="91.93" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#e619c9"/><stop offset="50%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
-    <svg class="gl-neon" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
-    <svg class="gl-trail gl-trail--1" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
-    <svg class="gl-trail gl-trail--2" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
-    <svg class="gl-trail gl-trail--3" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>`;
-
-  const o2Snippet = `
-    <svg class="gl-wire" viewBox="0 0 48 48"><path d="M22.724 19.014C22.724 19.07 22.712 19.124 22.688 19.175L18.313 28.412C18.226 28.596 18.301 28.816 18.484 28.908L21.707 30.525C21.997 30.671 21.978 31.09 21.677 31.209L11.389 35.274C11.072 35.399 10.766 35.07 10.913 34.763L22.011 11.613C22.183 11.253 22.724 11.376 22.724 11.775V19.014Z"/><path d="M25.276 19.014C25.276 19.07 25.288 19.124 25.312 19.175L29.687 28.412C29.774 28.596 29.699 28.816 29.517 28.908L26.293 30.525C26.003 30.671 26.022 31.09 26.323 31.209L36.611 35.274C36.928 35.399 37.234 35.07 37.087 34.763L25.989 11.613C25.817 11.253 25.276 11.376 25.276 11.775V19.014Z"/><path d="M23.604 22.959C23.739 22.678 24.138 22.674 24.278 22.952L26.44 27.246C26.534 27.432 26.458 27.659 26.271 27.751L24.104 28.817C23.997 28.87 23.871 28.869 23.765 28.813L21.722 27.746C21.543 27.652 21.47 27.434 21.557 27.252L23.604 22.959Z"/></svg>
-    <svg class="gl-l" viewBox="0 0 48 48"><path d="M22.724 19.014C22.724 19.07 22.712 19.124 22.688 19.175L18.313 28.412C18.226 28.596 18.301 28.816 18.484 28.908L21.707 30.525C21.997 30.671 21.978 31.09 21.677 31.209L11.389 35.274C11.072 35.399 10.766 35.07 10.913 34.763L22.011 11.613C22.183 11.253 22.724 11.376 22.724 11.775V19.014Z"/></svg>
-    <svg class="gl-r" viewBox="0 0 48 48"><path d="M25.276 19.014C25.276 19.07 25.288 19.124 25.312 19.175L29.687 28.412C29.774 28.596 29.699 28.816 29.517 28.908L26.293 30.525C26.003 30.671 26.022 31.09 26.323 31.209L36.611 35.274C36.928 35.399 37.234 35.07 37.087 34.763L25.989 11.613C25.817 11.253 25.276 11.376 25.276 11.775V19.014Z"/></svg>
-    <svg class="gl-c" viewBox="0 0 48 48"><path d="M23.604 22.959C23.739 22.678 24.138 22.674 24.278 22.952L26.44 27.246C26.534 27.432 26.458 27.659 26.271 27.751L24.104 28.817C23.997 28.87 23.871 28.869 23.765 28.813L21.722 27.746C21.543 27.652 21.47 27.434 21.557 27.252L23.604 22.959Z"/></svg>`;
-
-  function makeO1(theme, size){
-    const d = document.createElement('div');
-    d.className = 'gl-spinner gl-spinner--o1';
-    d.dataset.theme = theme;
-    d.style.setProperty('--gl-size', size + 'px');
-    d.innerHTML = o1Snippet;
-    return d;
-  }
-  function makeO2(theme, size){
-    const d = document.createElement('div');
-    d.className = 'gl-spinner gl-spinner--o2';
-    d.dataset.theme = theme;
-    d.style.setProperty('--gl-size', size + 'px');
-    d.setAttribute('role', 'status');
-    d.setAttribute('aria-label', 'Loading');
-    d.innerHTML = o2Snippet;
-    return d;
-  }
-
-  /* Main tiles */
-  ['o1-dark', 'o1-light'].forEach(id => {
-    const el = document.getElementById(id);
-    const theme = id.includes('dark') ? 'dark' : 'light';
-    el.appendChild(makeO1(theme, 72));
-  });
-  ['o2-dark', 'o2-light'].forEach(id => {
-    const el = document.getElementById(id);
-    const theme = id.includes('dark') ? 'dark' : 'light';
-    el.appendChild(makeO2(theme, 72));
-  });
-
-  /* Size ladders */
-  [72, 48, 32, 24, 16].forEach(s => {
-    const c1 = document.createElement('div');
-    c1.className = 'ladder-item';
-    c1.appendChild(makeO1('dark', s));
-    c1.insertAdjacentHTML('beforeend', `<span class="ladder-px">${s}px</span>`);
-    document.getElementById('ladder-o1').appendChild(c1);
-
-    const c2 = document.createElement('div');
-    c2.className = 'ladder-item';
-    c2.appendChild(makeO2('dark', s));
-    c2.insertAdjacentHTML('beforeend', `<span class="ladder-px">${s}px</span>`);
-    document.getElementById('ladder-o2').appendChild(c2);
-  });
-})();
-</script>
+<div class="tile white">
+<div class="s">
+<svg class="hex" viewBox="0 0 48 48"><path d="M21.75 1.29904C23.1423 0.49519 24.8577 0.49519 26.25 1.29904L42.5346 10.701C43.9269 11.5048 44.7846 12.9904 44.7846 14.5981V33.4019C44.7846 35.0096 43.9269 36.4952 42.5346 37.299L26.25 46.701C24.8577 47.5048 23.1423 47.5048 21.75 46.701L5.46539 37.299C4.07309 36.4952 3.21539 35.0096 3.21539 33.4019V14.5981C3.21539 12.9904 4.07309 11.5048 5.46539 10.701L21.75 1.29904Z"/><path class="gl-edge" d="M21.75 1.29904C23.1423 0.49519 24.8577 0.49519 26.25 1.29904L42.5346 10.701C43.9269 11.5048 44.7846 12.9904 44.7846 14.5981V33.4019C44.7846 35.0096 43.9269 36.4952 42.5346 37.299L26.25 46.701C24.8577 47.5048 23.1423 47.5048 21.75 46.701L5.46539 37.299C4.07309 36.4952 3.21539 35.0096 3.21539 33.4019V14.5981C3.21539 12.9904 4.07309 11.5048 5.46539 10.701L21.75 1.29904Z" pathLength="100"/></svg>
+<svg class="wire" viewBox="0 0 97.76 91.93"><defs><linearGradient id="go1w" x1="0" y1="0" x2="97.76" y2="91.93" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#e619c9"/><stop offset="50%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
+<svg class="neon" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
+<svg class="t1" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
+<svg class="t2" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
+<svg class="t3" viewBox="0 0 97.76 91.93"><path d="M44.26,32.35L27.72,67.12L43.29,74.9L0,91.93L44.26,0Z"/><path d="M53.5,32.35L70.04,67.12L54.47,74.9L97.76,91.93L53.5,0Z"/><path d="M48.64,43.78L58.33,62.94L48.64,67.69L39.47,62.92Z"/></svg>
+</div>
+<span class="tile-label">WHITE</span>
+</div>
+</div>
+<div class="opt">
+<div class="opt-label">Option 2</div>
+<div class="tile dark">
+<div class="s"><svg class="wire" viewBox="0 0 48 48"><path d="M22.724 19.014C22.724 19.07 22.712 19.124 22.688 19.175L18.313 28.412C18.226 28.596 18.301 28.816 18.484 28.908L21.707 30.525C21.997 30.671 21.978 31.09 21.677 31.209L11.389 35.274C11.072 35.399 10.766 35.07 10.913 34.763L22.011 11.613C22.183 11.253 22.724 11.376 22.724 11.775V19.014Z"/><path d="M25.276 19.014C25.276 19.07 25.288 19.124 25.312 19.175L29.687 28.412C29.774 28.596 29.699 28.816 29.517 28.908L26.293 30.525C26.003 30.671 26.022 31.09 26.323 31.209L36.611 35.274C36.928 35.399 37.234 35.07 37.087 34.763L25.989 11.613C25.817 11.253 25.276 11.376 25.276 11.775V19.014Z"/><path d="M23.604 22.959C23.739 22.678 24.138 22.674 24.278 22.952L26.44 27.246C26.534 27.432 26.458 27.659 26.271 27.751L24.104 28.817C23.997 28.87 23.871 28.869 23.765 28.813L21.722 27.746C21.543 27.652 21.47 27.434 21.557 27.252L23.604 22.959Z"/></svg><svg class="l" viewBox="0 0 48 48"><path d="M22.724 19.014C22.724 19.07 22.712 19.124 22.688 19.175L18.313 28.412C18.226 28.596 18.301 28.816 18.484 28.908L21.707 30.525C21.997 30.671 21.978 31.09 21.677 31.209L11.389 35.274C11.072 35.399 10.766 35.07 10.913 34.763L22.011 11.613C22.183 11.253 22.724 11.376 22.724 11.775V19.014Z"/></svg><svg class="r" viewBox="0 0 48 48"><path d="M25.276 19.014C25.276 19.07 25.288 19.124 25.312 19.175L29.687 28.412C29.774 28.596 29.699 28.816 29.517 28.908L26.293 30.525C26.003 30.671 26.022 31.09 26.323 31.209L36.611 35.274C36.928 35.399 37.234 35.07 37.087 34.763L25.989 11.613C25.817 11.253 25.276 11.376 25.276 11.775V19.014Z"/></svg><svg class="c" viewBox="0 0 48 48"><path d="M23.604 22.959C23.739 22.678 24.138 22.674 24.278 22.952L26.44 27.246C26.534 27.432 26.458 27.659 26.271 27.751L24.104 28.817C23.997 28.87 23.871 28.869 23.765 28.813L21.722 27.746C21.543 27.652 21.47 27.434 21.557 27.252L23.604 22.959Z"/></svg></div>
+<span class="tile-label">DARK</span>
+</div>
+<div class="tile white">
+<div class="s"><svg class="wire" viewBox="0 0 48 48"><path d="M22.724 19.014C22.724 19.07 22.712 19.124 22.688 19.175L18.313 28.412C18.226 28.596 18.301 28.816 18.484 28.908L21.707 30.525C21.997 30.671 21.978 31.09 21.677 31.209L11.389 35.274C11.072 35.399 10.766 35.07 10.913 34.763L22.011 11.613C22.183 11.253 22.724 11.376 22.724 11.775V19.014Z"/><path d="M25.276 19.014C25.276 19.07 25.288 19.124 25.312 19.175L29.687 28.412C29.774 28.596 29.699 28.816 29.517 28.908L26.293 30.525C26.003 30.671 26.022 31.09 26.323 31.209L36.611 35.274C36.928 35.399 37.234 35.07 37.087 34.763L25.989 11.613C25.817 11.253 25.276 11.376 25.276 11.775V19.014Z"/><path d="M23.604 22.959C23.739 22.678 24.138 22.674 24.278 22.952L26.44 27.246C26.534 27.432 26.458 27.659 26.271 27.751L24.104 28.817C23.997 28.87 23.871 28.869 23.765 28.813L21.722 27.746C21.543 27.652 21.47 27.434 21.557 27.252L23.604 22.959Z"/></svg><svg class="l" viewBox="0 0 48 48"><path d="M22.724 19.014C22.724 19.07 22.712 19.124 22.688 19.175L18.313 28.412C18.226 28.596 18.301 28.816 18.484 28.908L21.707 30.525C21.997 30.671 21.978 31.09 21.677 31.209L11.389 35.274C11.072 35.399 10.766 35.07 10.913 34.763L22.011 11.613C22.183 11.253 22.724 11.376 22.724 11.775V19.014Z"/></svg><svg class="r" viewBox="0 0 48 48"><path d="M25.276 19.014C25.276 19.07 25.288 19.124 25.312 19.175L29.687 28.412C29.774 28.596 29.699 28.816 29.517 28.908L26.293 30.525C26.003 30.671 26.022 31.09 26.323 31.209L36.611 35.274C36.928 35.399 37.234 35.07 37.087 34.763L25.989 11.613C25.817 11.253 25.276 11.376 25.276 11.775V19.014Z"/></svg><svg class="c" viewBox="0 0 48 48"><path d="M23.604 22.959C23.739 22.678 24.138 22.674 24.278 22.952L26.44 27.246C26.534 27.432 26.458 27.659 26.271 27.751L24.104 28.817C23.997 28.87 23.871 28.869 23.765 28.813L21.722 27.746C21.543 27.652 21.47 27.434 21.557 27.252L23.604 22.959Z"/></svg></div>
+<span class="tile-label">WHITE</span>
+</div>
+</div>
+</div>
 </body>
 </html>
