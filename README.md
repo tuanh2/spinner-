@@ -9,7 +9,7 @@
 [![Size: <2KB](https://img.shields.io/badge/Size-%3C2KB-22d3ee.svg)](#tech-specs)
 [![Accessibility: A11y](https://img.shields.io/badge/A11y-Reduced--Motion-100%25-green.svg)](#accessibility)
 
-[**🔥 Live Preview Demo**](https://tuanh2.github.io/spinner-/) • [**Option 1 Snippet**](#option-1) • [**Option 2 Snippet**](#option-2)
+[**🔥 Live Vercel Demo**](https://genlayer-spinner-one.vercel.app) • [**⚡ GitHub Pages Demo**](https://tuanh2.github.io/spinner-/) • [**Option 1 Snippet**](#option-1) • [**Option 2 Snippet**](#option-2)
 
 </div>
 
